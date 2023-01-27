@@ -1,0 +1,26 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
+.dimension-buttons {
+  display: flex;
+}
+
+.other-buttons {
+  display: flex;
+}
+
+.grid-container {
+  display: grid;
+  width: 100vw;
+  height: 80vh;
+}
+
