@@ -41,41 +41,16 @@ function createGrid(activeButton) {
   }
 }
 
-
-
 //Eventos de pintar div
-//gridContainer.addEventListener('mouseover', function() {
+gridContainer.addEventListener('mouseover', function() {
   if (activeButton!==0) {
-    if (activeButton===16) {
-      for (let i=0; i<(16*16); i++) {
-        gridContainer.children[i].addEventListener('mouseover', function() {
-          gridContainer.children[i].style.backgroundColor = 'black';
-        }); 
-      } 
+    for (let i=0; i<(activeButton*activeButton); i++) {
+      gridContainer.children[i].addEventListener('mouseover', function() {
+        gridContainer.children[i].style.backgroundColor = 'black';
+      });
     }
-    else if (activeButton===32) {
-      for (let i=0; i<(32*32); i++) {
-        gridContainer.children[i].addEventListener('mouseover', function() {
-          gridContainer.children[i].style.backgroundColor = 'black';
-        }); 
-      } 
-    } 
-    else if (activeButton===48) {
-      for (let i=0; i<(48*48); i++) {
-        gridContainer.children[i].addEventListener('mouseover', function() {
-          gridContainer.children[i].style.backgroundColor = 'black';
-        }); 
-      } 
-    } 
-    else if (activeButton===64) {
-      for (let i=0; i<(64*64); i++) {
-        gridContainer.children[i].addEventListener('mouseover', function() {
-          gridContainer.children[i].style.backgroundColor = 'black';
-        }); 
-      } 
-    }  
   }
-
+});
 
 
 
