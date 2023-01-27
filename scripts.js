@@ -51,7 +51,6 @@ eraser.addEventListener('click', function() {
 clear.addEventListener('click', function() {
   if (activeDimensionButton!==0) {
     for (let i=0; i<(activeDimensionButton*activeDimensionButton); i++) {
-      activeModeButton = 'clear';
       boardContainer.children[i].style.backgroundColor = 'white';
     }
   }
