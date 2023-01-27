@@ -3,7 +3,7 @@ let x16 = document.body.querySelector('.x16');
 let x32 = document.body.querySelector('.x32');
 let x48 = document.body.querySelector('.x48');
 let x64 = document.body.querySelector('.x64');
-let color = document.body.querySelector('color');
+let color = document.body.querySelector('.color');
 let eraser = document.body.querySelector('.eraser');
 let clear = document.body.querySelector('.clear');
 let boardContainer = document.body.querySelector('.board-container');
@@ -34,7 +34,7 @@ x64.addEventListener('click', function() {
 //Eventos de colorear div
 boardContainer.addEventListener('mouseover', function(e) {
   if (activeDimensionButton!==0 && (e.target.className!=='board-container')) {
-    e.target.style.backgroundColor = 'black';
+    e.target.style.backgroundColor = color.value;
   }
 });
 
