@@ -1,61 +1,39 @@
-//Variables globales con referencia a botones
+
+// VARIABLES GLOBALES
 let x16 = document.body.querySelector('.x16');
 let x32 = document.body.querySelector('.x32');
 let x48 = document.body.querySelector('.x48');
 let x64 = document.body.querySelector('.x64');
-let color = document.body.querySelector('.color');
-let eraser = document.body.querySelector('.eraser');
-let clear = document.body.querySelector('.clear');
+let buttonColor = document.body.querySelector('.color');
+let buttonEraser = document.body.querySelector('.eraser');
+let buttonClear = document.body.querySelector('.clear');
+let buttonRainBow = document.body.querySelector('.rainbow');
 let boardContainer = document.body.querySelector('.board-container');
-
-
-//Otras variables globales
 let activeDimensionButton = 0;
 let activeModeButton = 0;
 
-//Eventos de botones de medidas (crear Grid)
-x16.addEventListener('click', function() {
+
+
+// FUNCIONES
+function handlerButton16() {
   activeDimensionButton = 16;
   createGrid(16);
-});
-x32.addEventListener('click', function() {
+}
+
+function handlerButton32() {
   activeDimensionButton = 32;
   createGrid(32);
-});
-x48.addEventListener('click', function() {
+}
+
+function handlerButton48() {
   activeDimensionButton = 48;
   createGrid(48);
-});
-x64.addEventListener('click', function() {
+}
+
+function handlerButton64() {
   activeDimensionButton = 64;
   createGrid(64);
-});
-
-//Eventos de colorear div
-boardContainer.addEventListener('mouseover', function(e) {
-  if (activeDimensionButton!==0 && (e.target.className!=='board-container')) {
-    e.target.style.backgroundColor = color.value;
-  }
-});
-
-//Evento de goma de borrar
-eraser.addEventListener('click', function() {
-  if (activeDimensionButton!==0) {
-    boardContainer.addEventListener('mouseover', function(e) {
-      activeModeButton = 'eraser';
-      e.target.style.backgroundColor = 'white';
-    });
-  }
-});
-
-//Evento de limpiar cuadrícula
-clear.addEventListener('click', function() {
-  if (activeDimensionButton!==0) {
-    for (let i=0; i<(activeDimensionButton*activeDimensionButton); i++) {
-      boardContainer.children[i].style.backgroundColor = 'white';
-    }
-  }
-});
+}
 
 function createGrid(activeDimensionButton) {
   while(boardContainer.firstChild) {  //limpio grid anterior (si la hay)
@@ -72,15 +50,57 @@ function createGrid(activeDimensionButton) {
   }
 }
 
+function handlerEraser() {
+  if (activeDimensionButton!==0) {
+      activeModeButton = 'eraser';
+  }
+}
+
+function handlerClear() {
+  for (let i=0; i<(activeDimensionButton*activeDimensionButton); i++) {
+    boardContainer.children[i].style.backgroundColor = 'white';
+  }
+}
+
+function handlerRainbow() {
+  if (activeDimensionButton!==0) {
+    activeModeButton = 'rainbow';
+  }
+}
 
 
 
+// EVENTOS
+x16.addEventListener('click', handlerButton16);
+x32.addEventListener('click', handlerButton32);
+x48.addEventListener('click', handlerButton48);
+x64.addEventListener('click', handlerButton64);
 
+//Evento de selección de color
+buttonColor.addEventListener('click', function() {
+  activeModeButton = 'color';
+});
 
+//Evento de cursor sobre pizarra
+boardContainer.addEventListener('mouseover', function(e) {
+  if (activeDimensionButton!==0 && activeModeButton!==0 && (e.target.className!=='board-container')) {
+    if (activeModeButton==='color') {
+      e.target.style.backgroundColor = buttonColor.value;
+    }
+    else if (activeModeButton==='rainbow') {
+      e.target.style.backgroundColor = `rgb(${Math.round(Math.random()*255)}, ${Math.round(Math.random()*255)}, ${Math.round(Math.random()*255)})`;
+    }
+    else if (activeModeButton==='eraser') {
+      e.target.style.backgroundColor = 'white';
+    }  
+  }
+});
 
+//Evento de goma de borrar
+buttonEraser.addEventListener('click', handlerEraser);
 
+//Evento de rainbow
+buttonRainBow.addEventListener('click', handlerRainbow);
 
-
-
-
-
+//Evento de limpiar pizarra
+buttonClear.addEventListener('click', handlerClear);
